@@ -5,6 +5,7 @@
 
 #include "LED_test.h"
 #include "IR_test.h"
+#include "Servo_test.h"
 
 LED led;
 IR ir;
@@ -16,7 +17,9 @@ Servo_Wrapper servo;
 
 void setup()
 {
+  delay(1000);
   Serial.begin(9600);
+  delay(1000);
   while(!Serial.dtr());
   delay(1000);
   
@@ -27,17 +30,44 @@ void setup()
   
 }
 
+void reset()
+{
+  cli();
+// disable watchdog, if enabled
+// disable all peripherals
+UDCON = 1;
+USBCON = (1<<FRZCLK);  // disable USB
+UCSR1B = 0;
+delay(5);
+EIMSK = 0; PCICR = 0; SPCR = 0; ACSR = 0; EECR = 0; ADCSRA = 0;
+TIMSK0 = 0; TIMSK1 = 0; TIMSK2 = 0; TIMSK3 = 0; UCSR1B = 0; TWCR = 0;
+DDRA = 0; DDRB = 0; DDRC = 0; DDRD = 0; DDRE = 0; DDRF = 0;
+PORTA = 0; PORTB = 0; PORTC = 0; PORTD = 0; PORTE = 0; PORTF = 0;
+asm volatile("jmp 0x7000");
+}
+
 void loop()
 {
-  Serial.println("DEBUG MODE");
-  IR_test::orientation_test(ir);
-  IR_test::window_test(ir);
+  //Servo_test::servo_cycle_test(servo);
+  Servo_test::servo_direction_test(servo, ir);
+  
+  
+  Serial.println("Waiting for reset.");
+  for(int i=5; i>=0; i--)
+  {
+    Serial.println(i);
+    delay(500);
+  }
+  reset();
 }
 
 /*
-LED test:
-LED_test::rgb_test(led);
-LED_test::brightness_test(led);
-LED_test::rainbow_test(led);
+  LED_test::rgb_test(led);
+  LED_test::brightness_test(led);
+  LED_test::rainbow_test(led);
 */
 
+/*
+  IR_test::orientation_test(ir);
+  IR_test::window_test(ir);
+*/
