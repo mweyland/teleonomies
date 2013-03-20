@@ -6,6 +6,7 @@
 #include "LED_test.h"
 #include "IR_test.h"
 #include "Servo_test.h"
+#include "Speaker_test.h"
 
 LED led;
 IR ir;
@@ -48,7 +49,6 @@ asm volatile("jmp 0x7000");
 
 void loop()
 {
-  
   Serial.println("Waiting for reset.");
   for(int i=5; i>=0; i--)
   {
@@ -73,3 +73,8 @@ void loop()
   IR_test::orientation_test(ir);
   IR_test::window_test(ir);
 */
+
+/*
+  Speaker_test::simple_test();
+*/
+
