@@ -25,6 +25,14 @@ Anpassungen an das teensy/arduino framework:
    #define HW_CONFIG() (UHWCON = 0x80)
    #define PLL_CONFIG() (PLLCSR = 0x0e)
 
+4. libraries/FreqCount/util/timers.h
+
+   #elif defined(__AVR_AT90USB646__) || defined(__AVR_AT90USB1286__)
+   //#define COUNTER_USE_TIMER1    // T1 is pin 6   (has LED connected)
+   #define COUNTER_USE_TIMER3  // T3 is pin 13
+   #define TIMER_USE_TIMER2
+
+
 Zum flashen:
 ------------
 
