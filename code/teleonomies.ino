@@ -2,16 +2,19 @@
 #include "LED.h"
 #include "IR.h"
 #include "Speaker.h"
+#include "Theremin.h"
 
 #include "LED_test.h"
 #include "IR_test.h"
 #include "Servo_test.h"
 #include "Speaker_test.h"
+#include "Theremin_test.h"
 
 LED led;
 IR ir;
 Speaker speaker;
 Servo_Wrapper servo;
+Theremin theremin;
 
 #define UP +1
 #define DOWN -1
@@ -28,6 +31,7 @@ void setup()
   ir.begin();
   speaker.begin();
   servo.begin();
+  theremin.begin();
   
 }
 
@@ -49,6 +53,7 @@ asm volatile("jmp 0x7000");
 
 void loop()
 {
+  Theremin_test::raw_test(theremin);
   Serial.println("Waiting for reset.");
   for(int i=5; i>=0; i--)
   {
