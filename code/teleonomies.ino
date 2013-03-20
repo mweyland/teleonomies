@@ -48,9 +48,6 @@ asm volatile("jmp 0x7000");
 
 void loop()
 {
-  //Servo_test::servo_cycle_test(servo);
-  Servo_test::servo_direction_test(servo, ir);
-  
   
   Serial.println("Waiting for reset.");
   for(int i=5; i>=0; i--)
@@ -60,6 +57,11 @@ void loop()
   }
   reset();
 }
+
+  /*
+  Servo_test::servo_cycle_test(servo);
+  Servo_test::servo_direction_test(servo, ir);
+  */
 
 /*
   LED_test::rgb_test(led);

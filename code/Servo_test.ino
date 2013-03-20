@@ -24,11 +24,13 @@ void Servo_test::servo_cycle_test(Servo_Wrapper servo)
 
 void Servo_test::servo_direction_test(Servo_Wrapper servo, IR ir)
 {
-  while(1){
+  while(!Serial.available()){
     double theta  = ir.get_avg_angle();
     Serial.print("theta: ");
     Serial.println(theta);
     servo.apply_inverse_kinematics(cos(theta), sin(theta));
+    delay(50);
   }
+  while(Serial.available()) Serial.read();
 }
 
