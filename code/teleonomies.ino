@@ -53,7 +53,7 @@ asm volatile("jmp 0x7000");
 
 void loop()
 {
-  Theremin_test::raw_test(theremin);
+  Theremin_test::sound_test(theremin);
   Serial.println("Waiting for reset.");
   for(int i=5; i>=0; i--)
   {
