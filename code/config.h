@@ -15,7 +15,7 @@
 #define SERVO_3_MAX 172
 
 // Audio configuration
-#define SPEAKER_PIN 31
+#define SPEAKER_PIN 27
 
 // IR beacon configuration
 #define IR_WEST_PIN 8
