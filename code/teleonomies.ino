@@ -12,7 +12,6 @@
 
 #define DELAY(x) for (tmp = 0; tmp < x*143L; tmp ++) //143 = 1 mSecond
 
-
 LED led;
 IR ir;
 Speaker speaker;
