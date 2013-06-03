@@ -10,22 +10,26 @@
 #include "Speaker_test.h"
 #include "Theremin_test.h"
 
+#define DELAY(x) for (tmp = 0; tmp < x*143L; tmp ++) //143 = 1 mSecond
+
+
 LED led;
 IR ir;
 Speaker speaker;
 Servo_Wrapper servo;
 Theremin theremin;
+volatile uint32_t tmp;
 
 #define UP +1
 #define DOWN -1
 
 void setup()
 {
-  delay(1000);
+  DELAY(1000);
   Serial.begin(9600);
-  delay(1000);
+  DELAY(1000);
   while(!Serial.dtr());
-  delay(1000);
+  DELAY(1000);
   
   led.begin();
   ir.begin();
@@ -43,7 +47,7 @@ void reset()
 UDCON = 1;
 USBCON = (1<<FRZCLK);  // disable USB
 UCSR1B = 0;
-delay(5);
+DELAY(5);
 EIMSK = 0; PCICR = 0; SPCR = 0; ACSR = 0; EECR = 0; ADCSRA = 0;
 TIMSK0 = 0; TIMSK1 = 0; TIMSK2 = 0; TIMSK3 = 0; UCSR1B = 0; TWCR = 0;
 DDRA = 0; DDRB = 0; DDRC = 0; DDRD = 0; DDRE = 0; DDRF = 0;
@@ -59,7 +63,7 @@ void loop()
   for(int i=5; i>=0; i--)
   {
     Serial.println(i);
-    delay(500);
+    DELAY(500);
   }
   reset();
 }

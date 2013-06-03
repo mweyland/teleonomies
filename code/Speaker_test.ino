@@ -6,9 +6,9 @@ void Speaker_test::simple_test()
   while(!Serial.available())
   {
     digitalWrite(SPEAKER_PIN, HIGH);
-    delay(1);
+    DELAY(1);
     digitalWrite(SPEAKER_PIN, LOW);
-    delay(1);
+    DELAY(1);
   }
   while(Serial.available()) Serial.read();
 }
