@@ -32,6 +32,9 @@ Anpassungen an das teensy/arduino framework:
    #define COUNTER_USE_TIMER3  // T3 is pin 13
    #define TIMER_USE_TIMER2
 
+5. /hardware/teensy/cores/teensy/pins_teensy.c
+void TIMER0_OVF_vect() __attribute__((naked,weak));
+
 
 Zum flashen:
 ------------
