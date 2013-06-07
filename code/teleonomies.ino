@@ -56,8 +56,9 @@ asm volatile("jmp 0x7000");
 
 void loop()
 {
-//  Theremin_test::sound_test(theremin, led);
-  Servo_test::servo_direction_test(servo, ir);
+  Theremin_test::sound_test(theremin, led);
+//  Servo_test::servo_direction_test(servo, ir);
+  //  Speaker_test::simple_test();
   Serial.println("Waiting for reset.");
   for(int i=5; i>=0; i--)
   {
@@ -65,7 +66,7 @@ void loop()
     DELAY(500);
   }
   reset();
-}
+
 
   /*
   Servo_test::servo_cycle_test(servo);
@@ -83,7 +84,7 @@ void loop()
   IR_test::window_test(ir);
 */
 
-/*
-  Speaker_test::simple_test();
-*/
 
+  //Speaker_test::simple_test();
+
+}
